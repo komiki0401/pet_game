@@ -44,3 +44,12 @@
 @keyframes shiro-sleep{50%{transform:translateY(4px) scale(1.025,.97)}}
 @keyframes sleep-drift{0%{opacity:0;transform:translateY(5px)}45%{opacity:1}100%{opacity:0;transform:translateY(-12px)}}
 @media(max-width:480px){.cat{width:217px;height:230px;bottom:25px}}
+#teach-entry{border:0;padding:0;margin:0;min-width:0}
+[hidden]{display:none!important}
+#question-text{font-size:20px;line-height:1.8;margin:16px 0 22px;overflow-wrap:anywhere}
+#question-text:focus{outline:none}
+.answer-choices{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.answer-choices button{border:1px solid #d7deca;background:#f2f5eb;border-radius:12px;padding:15px 10px;font-size:14px;transition:background .15s,transform .15s}
+.answer-choices button:hover{background:#e3ebd7;transform:translateY(-2px)}
+.question-note{text-align:center;font-size:10px!important;margin-top:20px}
+#teach-title{overflow-wrap:anywhere;line-height:1.8}

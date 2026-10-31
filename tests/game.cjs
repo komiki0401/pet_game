@@ -5,6 +5,18 @@ const {spawn}=require('node:child_process');
 const {once}=require('node:events');
 const {existsSync}=require('node:fs');
 const path=require('node:path');
+async function answerQuestions(page,preference='大好き',relation='関係ある'){
+ const before=await page.locator('#word-count').innerText();
+ assert.equal(await page.locator('#question-text').innerText(),'それって好き？');
+ assert.deepEqual(await page.locator('#answer-choices button').allTextContents(),['大好き','好き','ふつう','嫌い']);
+ await page.getByRole('button',{name:preference,exact:true}).click();
+ assert.match(await page.locator('#question-text').innerText(),/と関係ある？/);
+ const bounds=await page.locator('#teach-dialog').boundingBox();
+ assert.ok(bounds.x>=0&&bounds.x+bounds.width<=page.viewportSize().width);
+ assert.ok(bounds.y>=0&&bounds.y+bounds.height<=page.viewportSize().height);
+ assert.equal(await page.locator('#word-count').innerText(),before);
+ await page.getByRole('button',{name:relation,exact:true}).click();
+}
 test('teaching, care, rest, persistence, keyboard dialog and mobile layout',async()=>{
  const server=spawn(process.execPath,[path.join(__dirname,'../server.js')],{env:{...process.env,PORT:'3137'},stdio:['ignore','pipe','inherit']});
  let browser;
@@ -22,6 +34,8 @@ test('teaching, care, rest, persistence, keyboard dialog and mobile layout',asyn
  await page.locator('[data-action="teach"]').click();
  await page.getByLabel('教えたいことば').fill('プリン');
  await page.getByRole('button',{name:'しろに教える'}).click();
+ assert.equal(await page.locator('#word-count').innerText(),'0 こ');
+ await answerQuestions(page);
  assert.match(await page.locator('#speech').innerText(),/プリン/);
  assert.equal(await page.locator('#word-count').innerText(),'1 こ');
  await page.locator('#open-teach').click();await page.locator('#word').fill('プリン');await page.locator('.primary').click();
@@ -44,6 +58,30 @@ test('teaching, care, rest, persistence, keyboard dialog and mobile layout',asyn
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
  await page.screenshot({path:'/tmp/komorebi-mobile.png',fullPage:true});
  await page.setViewportSize({width:1440,height:1100});await page.screenshot({path:'/tmp/komorebi-desktop.png',fullPage:true});
+ // Closing either question cancels learning and gives no rewards.
+ const beforeCancel=await page.evaluate(()=>JSON.parse(localStorage.getItem('komorebi-shiro-v1')));
+ for(const step of [1,2]){
+  await page.locator('#open-teach').click();await page.locator('#word').fill('とちゅう');await page.locator('.primary').click();
+  if(step===2)await page.getByRole('button',{name:'好き',exact:true}).click();
+  await page.keyboard.press('Escape');
+  assert.equal(await page.locator('#word-count').innerText(),'1 こ');
+ }
+ assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('komorebi-shiro-v1')).bond),beforeCancel.bond);
+ await page.setViewportSize({width:390,height:844});
+ for(const [preference,relation] of [['好き','関係ない'],['ふつう','わからない'],['嫌い','関係ある']]){
+  await page.locator('#open-teach').click();await page.locator('#word').fill('ことば'+preference);await page.locator('.primary').click();
+  await answerQuestions(page,preference,relation);
+  const learned=await page.evaluate(()=>JSON.parse(localStorage.getItem('komorebi-shiro-v1')).words.at(-1));
+  assert.equal(learned.preference,preference);assert.equal(learned.relation.answer,relation);
+  assert.equal(learned.relation.word,preference==='好き'?'プリン':'ことば'+(preference==='ふつう'?'好き':'ふつう'));
+ }
+ await page.reload();assert.equal(await page.locator('#word-count').innerText(),'4 こ');
+ await page.evaluate(()=>{Math.random=()=>.99;});await page.locator('[data-action="talk"]').click();
+ assert.match(await page.locator('#speech').innerText(),/苦手/);
+ // A pre-update save with words lacking question metadata remains usable.
+ await page.evaluate(()=>{const s=JSON.parse(localStorage.getItem('komorebi-shiro-v1'));s.words=[{text:'むかしのことば',category:'食べもの'}];localStorage.setItem('komorebi-shiro-v1',JSON.stringify(s));});
+ await page.reload();assert.equal(await page.locator('#word-count').innerText(),'1 こ');
+ await page.evaluate(()=>{Math.random=()=>.99;});await page.locator('[data-action="talk"]').click();assert.match(await page.locator('#speech').innerText(),/むかしのことば/);
  assert.deepEqual(errors,[]);
  const response=await page.request.get('http://127.0.0.1:3137/missing');assert.equal(response.status(),404);
  }finally{if(browser)await browser.close();server.kill();await once(server,'exit');}
@@ -72,6 +110,7 @@ test('built game loads and plays under the GitHub Pages project path',async()=>{
   assert.equal(await page.locator('#cat svg').count(),1);
   assert.notEqual(await page.locator('.fluffy-tail').evaluate(el=>getComputedStyle(el).animationName),'none');
   await page.locator('[data-action="teach"]').click();await page.locator('#word').fill('ひなた');await page.locator('.primary').click();
+  await answerQuestions(page);
   assert.match(await page.locator('#speech').innerText(),/ひなた/);
   await page.locator('.brand').click();await page.waitForURL(url);
   assert.equal(await page.locator('#word-count').innerText(),'1 こ');
