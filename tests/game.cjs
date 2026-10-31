@@ -7,6 +7,7 @@ const {existsSync}=require('node:fs');
 const path=require('node:path');
 async function answerQuestions(page,preference='大好き',relation='関係ある'){
  const before=await page.locator('#word-count').innerText();
+ assert.equal(await page.locator('#teach-question').isVisible(),true);
  assert.equal(await page.locator('#question-text').innerText(),'それって好き？');
  assert.deepEqual(await page.locator('#answer-choices button').allTextContents(),['大好き','好き','ふつう','嫌い']);
  await page.getByRole('button',{name:preference,exact:true}).click();
@@ -24,6 +25,7 @@ test('teaching, care, rest, persistence, keyboard dialog and mobile layout',asyn
  await Promise.race([once(server.stdout,'data'),once(server,'exit').then(()=>{throw new Error('Test server stopped');}),new Promise((_,reject)=>{const timer=setTimeout(()=>reject(new Error('Server startup timeout')),10000);timer.unref();})]);
  browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_PATH||(existsSync('/usr/bin/chromium')?'/usr/bin/chromium':undefined),args:['--no-sandbox']});
  const page=await browser.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.addInitScript(()=>{Array.prototype.findLast=undefined;});
  await page.goto('http://127.0.0.1:3137');
  const tailBefore=await page.locator('.fluffy-tail').evaluate(el=>getComputedStyle(el).transform);
  await page.waitForTimeout(220);
@@ -94,7 +96,7 @@ test('built game loads and plays under the GitHub Pages project path',async()=>{
  const files={'/pet_game/':'index.html','/pet_game/style.css':'style.css','/pet_game/app.js':'app.js'};
  const types={'index.html':'text/html; charset=utf-8','style.css':'text/css','app.js':'text/javascript'};
  const server=http.createServer(async(req,res)=>{
-  const file=files[req.url];
+  const file=files[new URL(req.url,'http://localhost').pathname];
   if(!file){res.writeHead(404);res.end();return;}
   try{const data=await readFile(path.join(__dirname,'../dist',file));res.writeHead(200,{'Content-Type':types[file]});res.end(data);}catch{res.writeHead(500);res.end();}
  });
@@ -107,6 +109,8 @@ test('built game loads and plays under the GitHub Pages project path',async()=>{
   page.on('response',r=>{if(r.status()>=400&&!r.url().endsWith('favicon.ico'))errors.push(r.url()+': '+r.status());});
   const url=`http://127.0.0.1:${server.address().port}/pet_game/`;
   await page.goto(url);
+  assert.match(await page.locator('script[src]').getAttribute('src'),/app\.js\?v=[a-f0-9]{12}/);
+  assert.match(await page.locator('link[rel=stylesheet]').getAttribute('href'),/style\.css\?v=[a-f0-9]{12}/);
   assert.equal(await page.locator('#cat svg').count(),1);
   assert.notEqual(await page.locator('.fluffy-tail').evaluate(el=>getComputedStyle(el).animationName),'none');
   await page.locator('[data-action="teach"]').click();await page.locator('#word').fill('ひなた');await page.locator('.primary').click();

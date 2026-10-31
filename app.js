@@ -91,7 +91,7 @@ $('#teach-form').addEventListener('submit',e=>{
  if(state.words.some(w=>w.text===text)){$('#form-message').textContent='そのことばは、もう覚えてるよ！';return;}
  if(state.words.length>=100){$('#form-message').textContent='たからばこが100こでいっぱいになったよ。';return;}
  const topics={'食べもの':'おやつ','場所':'おでかけ','遊び':'ともだち','好きなもの':'楽しいこと'};
- const related=state.words.findLast(w=>w.category===category&&w.text!==text);
+ const related=state.words.slice().reverse().find(w=>w.category===category&&w.text!==text);
  let topic=related?.text||topics[category]||'毎日の暮らし';
  if(topic===text)topic='毎日の暮らし';
  pendingWord={text,category,relation:{word:topic}};
