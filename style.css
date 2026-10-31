@@ -53,13 +53,12 @@
 .answer-choices button:hover{background:#e3ebd7;transform:translateY(-2px)}
 .question-note{text-align:center;font-size:10px!important;margin-top:20px}
 #teach-title{overflow-wrap:anywhere;line-height:1.8}
-/* Small, springy gestures and a soft blush for the rounder Shiro. */
-.paw-left{transform-origin:124px 251px}.paw-right{transform-origin:194px 252px}
-.cat .shiro-bow{transform-origin:161px 252px;animation:bow-bob 4s ease-in-out infinite}
-.cat .cheeks{transition:filter .3s ease}
-.cat[data-reaction="pet"] .cheeks,.cat[data-reaction="learn"] .cheeks{filter:saturate(1.3)}
+/* Quiet, sketch-like expressions, with a tiny nose and no accessories. */
+.paw-left{transform-origin:133px 251px}.paw-right{transform-origin:184px 252px}
+.cat .open-mouth{display:none}
+.cat[data-reaction="talk"] .open-mouth,.cat[data-reaction="learn"] .open-mouth,.cat[data-reaction="play"] .open-mouth{display:inline}
+.cat[data-reaction="talk"] .smile-mouth,.cat[data-reaction="learn"] .smile-mouth,.cat[data-reaction="play"] .smile-mouth{display:none}
 .cat[data-reaction="pet"] .paw-left{animation:shy-paw-left 1.3s ease-in-out 2}
 .cat[data-reaction="pet"] .paw-right{animation:shy-paw-right 1.3s ease-in-out 2}
-@keyframes bow-bob{50%{transform:rotate(4deg)}}
-@keyframes shy-paw-left{50%{transform:translate(3px,-3px) rotate(8deg)}}
-@keyframes shy-paw-right{50%{transform:translate(-3px,-3px) rotate(-8deg)}}
+@keyframes shy-paw-left{50%{transform:translate(3px,-5px) rotate(8deg)}}
+@keyframes shy-paw-right{50%{transform:translate(-3px,-5px) rotate(-8deg)}}

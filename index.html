@@ -9,34 +9,36 @@
 <section class="room-card" aria-label="しろのおへや"><div class="room-top"><span><i></i> しろのおへや</span><button id="sound" class="quiet-button" aria-pressed="false">♫ 音 OFF</button></div><div class="room" id="room"><div class="sunlight"></div><div class="window"><div class="cloud"></div><div class="hill"></div><div class="window-cross"></div></div><div class="wall-art">✿</div><div class="shelf"><span>📚</span><span class="vase">🌱</span></div><div class="floor"></div><div class="rug"></div><div class="plant"><span>🌿</span><div></div></div><div class="speech" id="speech" role="status" aria-live="polite">きみが来るの、待ってたよ。<br>今日はどんなお話をしよう？<span></span></div>
 <button id="cat" class="cat" aria-label="しろをなでる"><svg viewBox="0 0 320 340" aria-hidden="true" class="shiro-art">
 <defs>
-<radialGradient id="fur" cx="42%" cy="30%" r="78%"><stop stop-color="#fffefb"/><stop offset=".7" stop-color="#fffaf4"/><stop offset="1" stop-color="#eee4db"/></radialGradient>
-<linearGradient id="ear-pink" x1="0" y1="0" x2=".7" y2="1"><stop stop-color="#ffe6e5"/><stop offset="1" stop-color="#edb8bc"/></linearGradient>
-<linearGradient id="eye-brown" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#493128"/><stop offset=".58" stop-color="#6e4c3e"/><stop offset="1" stop-color="#bf9571"/></linearGradient>
+<radialGradient id="fur" cx="42%" cy="30%" r="78%"><stop stop-color="#fffefd"/><stop offset=".7" stop-color="#f8f7f5"/><stop offset="1" stop-color="#e9e7e4"/></radialGradient>
+<linearGradient id="ear-pink" x1="0" y1="0" x2=".7" y2="1"><stop stop-color="#f2dcd9"/><stop offset="1" stop-color="#deb7b8"/></linearGradient>
+<linearGradient id="eye-brown" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#50372e"/><stop offset="1" stop-color="#705247"/></linearGradient>
 <radialGradient id="blush"><stop stop-color="#f2b8b6" stop-opacity=".8"/><stop offset="1" stop-color="#f4cac2" stop-opacity="0"/></radialGradient>
 </defs>
 <ellipse class="cat-shadow" cx="159" cy="314" rx="76" ry="10" fill="#788065" opacity=".13"/>
-<g class="shiro-body" stroke="#a58d7e" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+<g class="shiro-body" stroke="#8d7c70" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
 <g class="fluffy-tail"><path d="M187 278 C233 274 250 247 259 223 Q268 202 267 184 Q282 176 284 160 Q301 173 291 201 L298 196 Q299 218 282 236 L292 232 Q285 256 264 266 L276 264 Q259 286 235 287 L244 293 Q215 306 193 295Z" fill="url(#fur)"/><path d="M214 284 Q250 272 271 236" fill="none" stroke="#e3d7ca" stroke-width="2"/><path d="M280 180 Q285 192 278 202" fill="none" stroke="#fffefb" stroke-width="5"/></g>
 <g class="little-feet"><path d="M133 285 Q115 294 121 307 Q126 314 136 310 Q146 315 151 302 L151 291 M171 292 Q165 309 176 315 Q185 319 190 311 Q201 314 204 304 Q205 291 191 286" fill="url(#fur)"/><path d="M128 304 L129 307 M136 305 L137 308 M179 308 L180 311 M188 305 L189 308" stroke="#d5b9af" stroke-width="1.8"/></g>
-<path d="M127 232 Q116 247 119 262 L114 260 Q114 274 126 284 L121 286 Q134 302 155 298 L160 302 Q183 303 199 287 L205 288 L201 280 Q213 261 201 240Z" fill="url(#fur)"/>
-<ellipse cx="160" cy="271" rx="27" ry="25" fill="#fffefa" stroke="none"/>
-<path d="M146 277 Q160 282 175 275" fill="none" stroke="#eee2d7" stroke-width="1.7"/>
-<g class="ear ear-left"><path d="M110 147 Q72 142 49 111 Q30 85 35 53 L32 57 Q34 32 48 19 L46 15 Q66 10 85 24 L86 20 Q105 35 110 59 L115 57 Q126 88 125 113Z" fill="url(#fur)"/><path d="M102 124 Q65 105 56 72 Q51 48 61 44 Q78 43 90 66 Q104 92 106 112" fill="url(#ear-pink)" stroke="none"/><path d="M87 123 Q67 118 65 107 Q66 96 78 101 Q64 80 77 75 Q94 76 99 101 Q108 89 116 98 Q123 110 115 127" fill="#fff8f1" stroke-width="1.8"/><path d="M42 48 Q43 32 54 28" fill="none" stroke="#fffefb" stroke-width="6"/></g>
-<g class="ear ear-right"><path d="M191 128 Q199 88 232 64 Q261 43 289 50 L286 46 Q302 49 303 66 Q305 90 290 116 L296 111 Q285 137 263 146 L266 149 Q237 163 211 153Z" fill="url(#fur)"/><path d="M212 131 Q231 90 270 79 Q290 73 285 91 Q277 117 253 129 Q231 141 216 139" fill="url(#ear-pink)" stroke="none"/><path d="M210 132 Q211 109 222 104 Q233 101 232 116 Q249 102 257 113 Q261 121 245 133 Q265 128 266 139 Q262 152 235 151" fill="#fff8f1" stroke-width="1.8"/><path d="M271 55 Q286 52 292 62" fill="none" stroke="#fffefb" stroke-width="6"/></g>
+<path d="M128 220 Q109 236 112 255 L107 256 Q107 268 116 278 L111 280 Q119 296 140 300 L142 305 Q160 309 180 299 L186 302 L187 294 Q204 281 205 263 L210 261 L204 251 Q204 232 190 221Z" fill="url(#fur)"/>
+<ellipse cx="158" cy="267" rx="30" ry="29" fill="#fdfcfa" stroke="none"/>
+<g class="ear ear-left"><path d="M110 147 Q72 142 49 111 Q30 85 35 53 L32 57 Q34 32 48 19 L46 15 Q66 10 85 24 L86 20 Q105 35 110 59 L115 57 Q126 88 125 113Z" fill="url(#fur)"/><path d="M102 124 Q65 105 56 72 Q51 48 61 44 Q78 43 90 66 Q104 92 106 112" fill="url(#ear-pink)" stroke="none"/><path d="M87 123 Q67 118 65 107 Q66 96 78 101 Q64 80 77 75 Q94 76 99 101 Q108 89 116 98 Q123 110 115 127" fill="#f8f7f4" stroke-width="1.8"/><path d="M42 48 Q43 32 54 28" fill="none" stroke="#fffefb" stroke-width="6"/></g>
+<g class="ear ear-right"><path d="M191 128 Q199 88 232 64 Q261 43 289 50 L286 46 Q302 49 303 66 Q305 90 290 116 L296 111 Q285 137 263 146 L266 149 Q237 163 211 153Z" fill="url(#fur)"/><path d="M212 131 Q231 90 270 79 Q290 73 285 91 Q277 117 253 129 Q231 141 216 139" fill="url(#ear-pink)" stroke="none"/><path d="M210 132 Q211 109 222 104 Q233 101 232 116 Q249 102 257 113 Q261 121 245 133 Q265 128 266 139 Q262 152 235 151" fill="#f8f7f4" stroke-width="1.8"/><path d="M271 55 Q286 52 292 62" fill="none" stroke="#fffefb" stroke-width="6"/></g>
 <g class="head">
-<path d="M100 132 Q104 116 119 112 Q114 101 119 93 Q127 108 140 108 Q127 86 139 76 Q151 68 158 76 Q146 76 149 88 Q151 99 164 102 Q179 96 193 108 L201 104 L203 115 Q226 120 239 141 L246 140 L243 150 Q259 171 255 192 L260 195 L253 201 Q251 220 232 228 L234 234 L222 233 Q199 250 171 246 L164 251 L156 247 Q130 252 106 239 L99 241 L99 233 Q78 225 72 207 L66 207 L72 198 Q65 179 77 158 L72 157 Q81 138 100 132Z" fill="url(#fur)"/>
-<path d="M111 139 Q125 127 141 128" fill="none" stroke="#fffefc" stroke-width="7" opacity=".9"/>
-<path d="M109 159 Q118 154 126 158 M187 158 Q196 155 202 162" fill="none" stroke="#c9b2a2" stroke-width="2"/>
-<g class="eyes"><g class="eye"><ellipse cx="123" cy="185" rx="18" ry="23" transform="rotate(5 123 185)" fill="url(#eye-brown)" stroke="none"/><ellipse cx="119" cy="176" rx="6" ry="7.5" fill="#fffef8" stroke="none"/><circle cx="131" cy="185" r="3.2" fill="#fffaf0" stroke="none"/><path d="M114 199 Q122 204 130 198" fill="none" stroke="#d7b28b" stroke-width="2.6"/></g><g class="eye"><ellipse cx="194" cy="186" rx="18" ry="23" transform="rotate(-5 194 186)" fill="url(#eye-brown)" stroke="none"/><ellipse cx="190" cy="177" rx="6" ry="7.5" fill="#fffef8" stroke="none"/><circle cx="202" cy="186" r="3.2" fill="#fffaf0" stroke="none"/><path d="M185 200 Q193 205 201 199" fill="none" stroke="#d7b28b" stroke-width="2.6"/></g></g>
-<g class="closed-eyes" fill="none" stroke="#886a58" stroke-width="3.1"><path d="M108 185 Q123 170 138 186 M179 186 Q194 171 209 187"/></g>
-<g class="cheeks" stroke="none"><ellipse cx="96" cy="210" rx="24" ry="15" fill="url(#blush)"/><ellipse cx="220" cy="210" rx="24" ry="15" fill="url(#blush)"/><g stroke="#fff9f0" stroke-width="2" opacity=".8"><path d="M89 208 L87 212 M96 209 L94 213 M216 209 L214 213 M223 208 L221 212"/></g></g>
-<path d="M153 195 Q159 191 164 195 Q163 201 159 201 Q155 201 153 195Z" fill="#bf8e88" stroke="none"/>
-<g class="mouth"><path d="M148 208 Q158 214 170 208 Q168 224 159 225 Q151 223 148 208Z" fill="#e9b3b3" stroke="#94715f" stroke-width="2"/><path d="M154 221 Q159 215 165 221" fill="#ffd9cd" stroke="none"/></g>
-<path d="M82 184 L78 187 M81 193 L77 195 M240 190 L245 192" stroke="#d7bfb0" stroke-width="1.5"/>
+<path d="M109 130 Q102 119 108 109 Q113 123 126 122 Q119 98 130 83 Q135 76 143 78 Q135 92 143 106 L151 104 L151 111 Q172 103 190 116 L197 111 L199 122 Q218 128 228 146 L234 145 L231 154 Q242 171 238 188 L243 190 L237 197 Q235 212 219 221 L221 226 L210 225 Q189 240 166 235 L160 239 L153 235 Q131 241 110 229 L104 232 L104 225 Q86 219 82 204 L77 204 L82 195 Q76 176 86 158 L82 158 Q91 140 109 130Z" fill="url(#fur)"/>
+<g class="eyes">
+<g class="eye"><ellipse cx="125" cy="179" rx="11.5" ry="16.5" transform="rotate(12 125 179)" fill="url(#eye-brown)" stroke="none"/><ellipse cx="127" cy="172" rx="3.3" ry="4.3" fill="#fffefb" stroke="none"/></g>
+<g class="eye"><ellipse cx="190" cy="181" rx="11.5" ry="16.5" transform="rotate(8 190 181)" fill="url(#eye-brown)" stroke="none"/><ellipse cx="192" cy="174" rx="3.3" ry="4.3" fill="#fffefb" stroke="none"/></g>
 </g>
-<g class="shiro-bow"><path d="M158 251 Q142 238 140 249 Q139 259 156 258 M163 251 Q181 240 182 250 Q181 261 165 258" fill="#bbccb0" stroke="#90a687" stroke-width="1.6"/><circle cx="161" cy="255" r="4.5" fill="#d2dec6" stroke="#90a687" stroke-width="1.5"/><circle cx="161" cy="264" r="5.8" fill="#e9c67c" stroke="#c8a469" stroke-width="1.3"/><path d="M160 263 L162 263 M161 264 L161 267" stroke="#ae8957" stroke-width="1.2"/></g>
-<g class="paw paw-left"><path d="M125 245 Q112 229 102 235 Q95 236 98 242 Q89 246 97 251 Q94 260 106 260 Q117 261 125 254" fill="url(#fur)"/><path d="M99 243 L103 244 M98 251 L102 251" fill="none" stroke="#dac4b6" stroke-width="1.4"/></g>
-<g class="paw paw-right"><path d="M194 246 Q207 231 217 236 Q224 239 220 245 Q228 250 220 255 Q222 263 211 262 Q202 263 194 255" fill="url(#fur)"/><path d="M216 245 L220 245 M216 253 L220 254" fill="none" stroke="#dac4b6" stroke-width="1.4"/></g>
+<g class="closed-eyes" fill="none" stroke="#715a4c" stroke-width="2.2"><path d="M115 181 Q125 188 135 180 M180 182 Q190 189 200 181"/></g>
+<g class="cheeks" fill="#dcb9b5" stroke="none" opacity=".17"><ellipse cx="108" cy="197" rx="11" ry="5"/><ellipse cx="210" cy="199" rx="11" ry="5"/></g>
+<ellipse class="tiny-nose" cx="158" cy="189" rx="1.9" ry="1.4" fill="#83685a" stroke="none"/>
+<g class="mouth" stroke="#806658" stroke-width="1.8" fill="none">
+<path class="smile-mouth" d="M148 198 Q151 204 157 199 Q161 205 167 199"/>
+<g class="open-mouth"><path d="M146 197 Q157 203 170 198 Q166 216 157 218 Q149 212 146 197Z" fill="#e6b7b5"/><path d="M152 211 Q158 207 164 212" fill="#f5d2cd" stroke="none"/></g>
+</g>
+<path d="M90 178 L87 181 M89 185 L86 188 M227 185 L231 187 M225 192 L229 194" stroke="#bdb0a5" stroke-width="1.3"/>
+</g>
+<g class="paw paw-left"><path d="M133 244 Q126 229 114 231 Q103 231 105 239 Q97 243 104 249 Q99 256 110 261 Q122 266 134 256" fill="url(#fur)"/><path d="M105 240 L111 242 M104 249 L111 251" fill="none" stroke="#c6b7ac" stroke-width="1.3"/></g>
+<g class="paw paw-right"><path d="M183 243 Q192 229 204 234 Q212 236 208 243 Q218 247 210 253 Q213 260 202 264 Q191 265 184 254" fill="url(#fur)"/><path d="M204 244 L209 245 M205 252 L210 253" fill="none" stroke="#c6b7ac" stroke-width="1.3"/></g>
 <g class="snack"><circle cx="160" cy="250" r="15" fill="#e0b87d" stroke="#b38c5f" stroke-width="1.8"/><path d="M151 245 L153 248 M163 240 L165 243 M164 254 L167 257 M152 256 L154 258" stroke="#a07b53" stroke-width="2.8"/></g>
 </g>
 <g class="pet-sparkles" fill="#f1bfc1" stroke="#d9a2a4" stroke-width="1.7" stroke-linecap="round"><path d="M48 208 C31 187 21 209 47 222 C73 204 54 192 48 208Z"/><path d="M278 146 C268 133 260 146 277 155 C292 143 281 136 278 146Z"/></g>
